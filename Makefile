@@ -1,5 +1,6 @@
 LANGS=fr en
-OUTFILES=$(foreach l,$(LANGS),guide_$(l).ext)
+OUTPUT:=output
+OUTFILES=$(foreach l,$(LANGS),$(OUTPUT)/guide_$(l).ext)
 
 all: html docbook pdf
 html: $(OUTFILES:.ext=.html)
@@ -8,16 +9,24 @@ pdf: $(OUTFILES:.ext=.pdf)
 
 IMAGES=images/*
 
-guide_%.html: guide_%.adoc $(IMAGES)
-	asciidoctor $<
+prep:
+	mkdir -p $(OUTPUT)
+	ln -sf $(shell pwd)/images $(OUTPUT)/images
 
-guide_%.xml: guide_%.adoc $(IMAGES)
-	asciidoctor -b docbook5 $<
+$(OUTPUT)/guide_%.html: guide_%.adoc prep $(IMAGES)
+	@echo $@
+	asciidoctor -o $@ $<
 
-guide_%.pdf: guide_%.xml dblatex.xsl
-	dblatex --pdf -p dblatex.xsl $<
+$(OUTPUT)/guide_%.xml: guide_%.adoc prep $(IMAGES)
+	asciidoctor -o $@ -b docbook5 $<
+
+$(OUTPUT)/guide_%.pdf: $(OUTPUT)/guide_%.xml prep dblatex.xsl
+	dblatex --pdf -p dblatex.xsl -O $(OUTPUT) $<
 
 clean:
-	rm *.html *.xml *.pdf
+	-rm $(OUTPUT)/*.html
+	-rm $(OUTPUT)/*.xml
+	-rm $(OUTPUT)/*.pdf
+	-rm $(OUTPUT)/images
 
 .PHONY: clean
