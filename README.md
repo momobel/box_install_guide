@@ -1,3 +1,5 @@
+![](https://github.com/WattSense/box_install_guide/workflows/Build%20guide/badge.svg?branch=master)
+
 # Requirements
 
 Install (with your distribution of from any other way):
