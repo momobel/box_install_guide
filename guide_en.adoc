@@ -147,7 +147,7 @@ image::images/box_ip_eth_led_on.png[{half-width}]
 
 Configuration:
 
-* If there is not a  DHCP server on the network, attribute a static IP address to the Box (Discuss with the building’s IT manager).
+* If there is not a DHCP server on the network, attribute a static IP address, its mask and the gateway if necessary to the Box (Discuss with the building’s IT manager).
 * If there is a DHCP server on the network, the address is automatically assigned.
 
 Information to retrieve in preparation for the configuration:

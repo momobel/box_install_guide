@@ -149,7 +149,7 @@ image::images/box_ip_eth_led_on.png[{half-width}]
 
 Paramétrage :
 
-* S’il n’existe pas de DHCP sur le réseau, attribuer une adresse IP statique à la Box (voir avec le responsable informatique du bâtiment).
+* S’il n’existe pas de DHCP sur le réseau, attribuer une adresse IP statique, son masque de sous-réseau et une passerelle, si c'est nécessaire, à la Box (voir avec le responsable informatique du bâtiment).
 * S’il existe un DHCP sur le réseau, l’adresse est attribuée automatiquement.
 
 Informations à récupérer en prévision de la configuration :
